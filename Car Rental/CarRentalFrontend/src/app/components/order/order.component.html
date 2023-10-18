@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a routerLink="/dashboard/" class="navbar-brand">Car Rental</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+        <li class="nav-item active">
+          <button  type="button" (click)="onViewCart()" class="btn btn-outline-light my-2 my-sm-0">Rental Agreements</button>
+        </li>
+          
+
+          <li class="nav-item active">
+            <button  type="button" (click)="onOrder()" class="btn btn-outline-light my-2 my-sm-0">Orders</button>
+          </li>
+
+
+          <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="logout()" type="button" class="btn btn-outline-light my-2 my-sm-0">Signout</button>
+          </li></ng-container>
+
+         
+      </ul>
+      <ng-container *ngIf="auth.isLoggedIn()">
+      <div class="name" style="color: grey;">
+        <h6>Hello, {{UserName}}</h6>
+      </div>
+    </ng-container>
+    </div>
+  </nav>
+
+
+
+
+  <div class="mx-auto" style="max-width: 100%;overflow-x: hidden;">
+    <div class="p-1  my-rounded-corner">
+        <h3 class="w-25 border text-center py-2" id="currcart" style="border-radius: 30px;">My Orders</h3>
+        <div class="current-cart-items w-75 mx-auto mt-5">
+            <div class="row">
+              <h2 id="noitems" style="color: red;" *ngIf="ProductArray.length===0">*Your Order is pending please wait......</h2>
+                <div class="border my-shadow" style="border-radius: 300px;" id="mainbox" *ngFor="let x of ProductArray">
+
+                    <div class="flex-box" >
+                        <div class="left">
+                            <div class="big-img">
+                                <img src="assets/{{x.productId}}.png">
+                            </div>
+                        </div>
+                    
+                        <div class="right" >
+                    
+                            <div class="pname">{{x.productName}}</div>
+                            
+                    
+                           
+                    
+                            
+                            <div class="price">&#x20b9; {{x.price}}</div>
+                           
+                    
+                            <br>
+                    
+                            <div *ngFor="let x of DateArray">
+                            <span class="string"><b>Ordered from : </b> 
+                                <small> <span class="fs-6" id="date"><b>{{x.startDate}} - </b></span></small>
+                               <small> <span class="fs-6" id="date"><b>{{x.endDate}}</b></span></small>
+                            </span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+               
+            </div>
+        </div>
+    </div>
+  </div>

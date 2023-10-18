@@ -1,0 +1,94 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Car Rental</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+            <button (click)="AddRecord()" type="button" class="btn btn-outline-light my-2 my-sm-0">Add Record</button>
+          </li>
+        <li class="nav-item active">
+          <button (click)="logout()" type="button" class="btn btn-outline-light my-2 my-sm-0">Signout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="col offset-1 ">
+    <button (click)="onBack()" type="submit"  class="btn btn-light">< Go Back</button>
+</div>
+
+
+
+<div class="form">
+    <form [formGroup]="dataForm" class="border p-3 rounded-3 my-shadow">
+        <div class="row g-0">
+            <div class="col text-center p-1 mb-3 bg-light">
+                <span class="fs-3">Enter Product Details</span>
+            </div>
+        </div>
+    
+        
+        
+        <div class="row">
+            <div class="col mb-3">
+                <label for="productname" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="productname" formControlName="productname" placeholder="Enter Product Name" maxlength="100"> 
+            </div>
+        </div>
+        <small *ngIf="dataForm.controls['productname'].dirty && dataForm.hasError('required','productname')" class="text-danger">*Product name is required</small>
+    
+    
+    
+        <div class="row">
+            <div class="col mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" formControlName="description" placeholder="Enter Description" maxlength="255">
+            </div>
+        </div>
+        <small *ngIf="dataForm.controls['description'].dirty && dataForm.hasError('required','description')" class="text-danger">*Description is required</small>
+    
+    
+        
+        <div class="row">
+            <div class="col mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" formControlName="price" placeholder="Enter Price" min="1" max="5000"> 
+            </div>
+        </div>
+        <small *ngIf="dataForm.controls['price'].dirty && dataForm.hasError('required','price')" class="text-danger">*Price is required</small>
+        
+       
+       
+    
+        <br>
+
+        <div class="row">
+            <div class="col mb-1">
+                <label for="productcategory" class="form-label">Product Category</label>
+                <input type="text" class="form-control" id="productcategory" formControlName="productcategory" placeholder="Enter Product Category" maxlength="100">
+            </div>
+        </div>
+        <small *ngIf="dataForm.controls['productcategory'].dirty && dataForm.hasError('required','productcategory')" class="text-danger">*Category is required</small>
+        
+        <br>
+        <div class="container1">
+            <input type="file" id="myFile" name="filename">
+            <input type="submit">
+        </div>
+
+        <br>
+
+        <div class="container">
+        <div class="row">
+            <div class="col offset-2">
+                <button (click)="onAdd()" type="submit"  class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col offset-4">
+                 <button (click)="onClear()" type="submit"  class="btn btn-outline-secondary">Clear</button>
+             </div>
+             
+        </div>
+    </div>
+    </form>
+    </div>

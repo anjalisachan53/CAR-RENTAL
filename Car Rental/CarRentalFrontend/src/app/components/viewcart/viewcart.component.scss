@@ -1,0 +1,132 @@
+.navbar{
+    padding-left: 50px;
+}
+
+.navbar-nav{
+    padding-left: 10px;
+}
+
+.nav-item{
+    padding-left: 30px;
+}
+
+.btn{
+    border: none;
+}
+
+.btn:focus{
+    outline: none;
+    border: none;
+}
+
+.name{
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+#currcart{
+    margin-top: 20px;
+    margin-left: 500px;
+}
+
+
+.flex-box{
+    display: flex;
+    width: 1000px;
+    margin: auto;
+  }
+
+  .big-img{
+    margin-top: 50px;
+    float: left;
+    width: 280px;
+    padding-left: 200px;
+  }
+
+  .big-img img{
+    width: inherit;
+    height: inherit;
+  }
+
+  .pname{
+    color: black;
+    font-size: 33px;
+    font-weight: 600;
+    margin-top: 50px;
+  }
+
+  .price{
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 20px 0;
+  }
+
+
+
+
+
+
+  .checked {
+    color: orange;
+  }
+
+  .price{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px 0;
+  }
+
+  #mainbox{
+    height: 345px;
+  }
+
+  .right{
+    padding-left: 300px;
+  }
+
+  .cart-btn-remove:hover{
+    background-color: rgb(252, 122, 122);
+  }
+
+  .btn-box1{
+    display: flex;
+    padding-left: 360px;
+    margin-left: 100px;
+    margin-top: 20px;
+  }
+
+  .btn-box1 button{
+    padding: 10px 0px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 60px;
+    cursor: pointer;
+    width: 120px;
+  }
+  
+  .cart-btn-place:hover{
+    background-color: rgb(55, 202, 70);
+  }
+
+
+  .btn-box{
+    display: flex;
+    margin-left: 200px;
+    margin-top: 120px;
+  }
+
+
+  .btn-box button{
+    height: 100px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 60px;
+    cursor: pointer;
+    width: 100px;
+  }
+
+  #noitems{
+    margin-left: 340px;
+  }

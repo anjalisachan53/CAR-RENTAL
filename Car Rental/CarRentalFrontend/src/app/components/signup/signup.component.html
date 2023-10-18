@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Car Rental</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/login">LOGIN </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">SIGN UP</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">SIGN-UP</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="signupForm">
+                            <div class="form-group pt-3">
+                                
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                        <input formControlName="username" type="text" placeholder="Username">         
+                                </div>
+                            </div>
+                            <div class="form-text text-danger" *ngIf="signupForm.controls['username'].dirty && signupForm.hasError('maxlength','username')">*Username can be maximum of 50 characters</div>
+                            <small *ngIf="signupForm.controls['username'].dirty && signupForm.hasError('required','username')" class="text-danger" >*Username is required</small>
+
+
+
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                        <input formControlName="useremail" type="text" placeholder="Email">         
+                                </div>
+                            </div>
+                            <small *ngIf="signupForm.controls['useremail'].dirty && signupForm.hasError('required','useremail')" class="text-danger" >*Email is required</small>
+
+                            
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password" [type]="type" placeholder="Password">
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                                </div>
+                            </div>
+                            <div class="form-text text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('pattern','password')">*Password must be of 8 characters with 1 special character, 1 number and 1 alphabet</div>
+                            <small *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required','password')" class="text-danger" >*Password is required</small>
+
+
+                           
+
+
+                            <button (click)="onSignup()" type="submit" class="btn btn-primary btn-block mt-4 w-100">SIGN-UP</button>
+                            <div class="text-center pt-4 text-muted">Already have an account? <a routerLink="/login">Login</a></div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

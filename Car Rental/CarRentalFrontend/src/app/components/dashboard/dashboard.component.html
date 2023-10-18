@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand">Car Rental</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <ng-container *ngIf="Role === 'Admin'"><li class="nav-item active">
+            <button (click)="AddRecord()" type="button" class="btn btn-outline-light my-2 my-sm-0">Add Record</button>
+          </li></ng-container>
+
+          <ng-container *ngIf="Role === 'Admin'"><li class="nav-item active">
+            <button (click)="RentalApproval()" type="button" class="btn btn-outline-light my-2 my-sm-0">Rental Approvals</button>
+          </li></ng-container>
+
+          
+
+          <ng-container *ngIf="auth.isLoggedIn() && Role==='User'"><li class="nav-item active">
+            <a routerLink="/viewcart/"><button  type="button" class="btn btn-outline-light my-2 my-sm-0">Rental Agreements</button></a>
+          </li></ng-container>
+
+          <ng-container *ngIf="auth.isLoggedIn() && Role==='User'"><li class="nav-item active">
+            <button (click)="onOrder()" type="button" class="btn btn-outline-light my-2 my-sm-0">Orders</button>
+          </li></ng-container>
+
+
+          <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="logout()" type="button" class="btn btn-outline-light my-2 my-sm-0">Signout</button>
+          </li></ng-container>
+
+          <ng-container *ngIf="!auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="login()" type="button" class="btn btn-outline-light my-2 my-sm-0">Login</button>
+          </li></ng-container>
+
+          <ng-container *ngIf="!auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="register()" type="button" class="btn btn-outline-light my-2 my-sm-0">Sign-Up</button>
+          </li></ng-container>
+      </ul>
+      <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+        <button class="btn btn-outline-light my-2 my-sm-0">Help</button>
+      </li></ng-container>
+
+      <ng-container *ngIf="auth.isLoggedIn()">
+      <div class="name" style="color: grey;">
+        <h6>Hello, {{UserName}}</h6>
+      </div>
+    </ng-container>
+    
+    </div>
+  </nav>
+
+
+
+  <div class="container mt-4" style="height: 450px; overflow: auto;">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+         <tr  *ngFor="let x of ProductArray">
+          <td>{{x.productName}}</td>
+          <td>{{ x.description | slice:0:50 }}...</td>
+          <td>{{x.price}}</td>
+          <td>
+            <a routerLink="/productdetail/{{x.productId}}"><img id="image" src="assets/{{x.productId}}.png"></a>
+          </td>
+
+          <ng-container *ngIf="Role === 'Admin'"><td >
+            <a routerLink="/edit/{{x.productId}}"><button type="button" class="btn btn-secondary" >Edit</button></a>
+            <ng-container *ngIf="Role === 'Admin'"><button style="margin-left: 5px;" type="button" class="btn btn-danger" (click)="onDelete(x.productId)" >Delete</button></ng-container>
+          </td>
+          </ng-container>
+          <td>
+
+            <ng-container *ngIf="!auth.isLoggedIn()">
+              <button type="button" class="btn btn-success" [disabled]="!auth.isLoggedIn()">
+                Add To Cart
+                <span *ngIf="!auth.isLoggedIn()">(Login First)</span>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="auth.isLoggedIn() && Role==='User'">
+              <a routerLink="/productdetail/{{x.productId}}"><button type="button" class="btn btn-success">
+                View Product
+              </button></a>
+            </ng-container>
+          </td>
+        </tr> 
+      </tbody>
+  
+    </table>
+  </div>
+  

@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a routerLink="/dashboard/" class="navbar-brand">Car Rental</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" *ngFor="let x of ProductArray">
+      <ul class="navbar-nav">
+        <ng-container *ngIf="Role === 'Admin'"><li class="nav-item active">
+            <button (click)="AddRecord()" type="button" class="btn btn-outline-light my-2 my-sm-0">Add Record</button>
+          </li></ng-container>
+
+          <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+            <a routerLink="/viewcart/"><button  type="button" class="btn btn-outline-light my-2 my-sm-0">Rental Agreements</button></a>
+          </li></ng-container>
+
+          <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+            <button  type="button" (click)="onOrder()" class="btn btn-outline-light my-2 my-sm-0">Orders</button>
+          </li></ng-container>
+
+
+          <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="logout()" type="button" class="btn btn-outline-light my-2 my-sm-0">Signout</button>
+          </li></ng-container>
+
+          <ng-container *ngIf="!auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="login()" type="button" class="btn btn-outline-light my-2 my-sm-0">Login</button>
+          </li></ng-container>
+
+          <ng-container *ngIf="!auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="register()" type="button" class="btn btn-outline-light my-2 my-sm-0">Sign-Up</button>
+          </li></ng-container>
+      </ul>
+      <ng-container *ngIf="auth.isLoggedIn()">
+      <div class="name" style="color: grey;">
+        <h6>Hello, {{UserName}}</h6>
+      </div>
+    </ng-container>
+    </div>
+  </nav>
+
+
+<div class="flex-box" *ngFor="let x of ProductArray">
+    <div class="left">
+        <div class="big-img">
+            <img src="assets/{{x.productId}}.png">
+        </div>
+    </div>
+
+    <div class="right" >
+
+        <div class="pname">{{x.productName}}</div>
+        <br>
+
+        <div class="ratings">
+            <span class="fa fa-star checked" style="font-size:26px"></span>
+            <span class="fa fa-star checked" style="font-size:26px"></span>
+            <span class="fa fa-star checked" style="font-size:26px"></span>
+            <span class="fa fa-star checked" style="font-size:26px"></span>
+            <span class="fa fa-star-half-full" style="color: orange;font-size:26px"></span>      
+        </div>
+
+        <br>
+        <div class="price">&#x20b9; {{x.price}} </div>
+        
+
+        
+        <br>
+
+        <div class="description">
+            <p>{{x.description}}</p>
+        </div>
+
+        
+
+
+        <br>
+
+        <form [formGroup]="dateForm">
+        <div class="quantity">
+            <label for="start-date"><p>Start Date:</p></label>
+            <input type="date" id="end-date" formControlName="start" name="start-date" required>
+            <br>
+            
+            <div *ngIf="dateForm.get('start')?.hasError('pastDate')" class="error-message" style="color: red;">
+             <br> Please select a present or future date for the start date.
+            </div>
+            <label for="end-date"><p>End Date:</p></label>
+            <input type="date" id="end-date" formControlName="end" name="end-date" required>
+            <br>
+            <div *ngIf="dateForm.get('end')?.hasError('pastDate')" class="error-message" style="color: red;">
+             <br> Please select a present or future date for the start date.
+            </div>
+        </div>
+    </form>
+
+        <br>
+
+        <ng-container>
+        <div class="btn-box">
+            <button class="cart-btn" [disabled]="!auth.isLoggedIn()" (click)="onAddtoCart()">
+                Book Now!!!
+                
+                <span *ngIf="!auth.isLoggedIn()">(Login First)</span>
+            </button>
+        </div>
+        <br>
+        
+        </ng-container>
+    </div>
+</div>
+
+
+
+

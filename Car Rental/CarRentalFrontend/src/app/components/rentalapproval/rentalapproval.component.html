@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a routerLink="/dashboard/" class="navbar-brand">Car Rental</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+        <ng-container *ngIf="auth.isLoggedIn() && Role==='User'"><li class="nav-item active">
+            <a routerLink="/viewcart/"><button  type="button" class="btn btn-outline-light my-2 my-sm-0">Rental Agreements</button></a>
+          </li></ng-container>
+          
+
+          <ng-container *ngIf="auth.isLoggedIn()"><li class="nav-item active">
+            <button (click)="logout()" type="button" class="btn btn-outline-light my-2 my-sm-0">Signout</button>
+          </li></ng-container>
+
+         
+      </ul>
+      <ng-container *ngIf="auth.isLoggedIn()">
+      <div class="name" style="color: grey;">
+        <h6>Hello, {{UserName}}</h6>
+      </div>
+    </ng-container>
+    </div>
+  </nav>
+
+
+  <div class="mx-auto"  style="max-width: 100%;overflow-x: hidden;">
+    <div class="p-1 ">
+        <h3 class="w-25 border text-center py-2" id="currcart" style="border-radius: 30px;">Current Rentals</h3>
+        <div class="current-cart-items w-75 mx-auto mt-5" >
+            <div class="row" >
+                <h2 id="noitems" style="color: red;" *ngIf="ProductArray.length===0">No Rentals right now</h2>
+                <div class="border my-shadow" style="border-radius: 300px;" id="mainbox" *ngFor="let x of ProductArray">
+
+                    <div class="flex-box">
+                        <div class="left">
+                            <div class="big-img">
+                                <img src="assets/{{x.productId}}.png">
+                            </div>
+                        </div>
+                    
+                        <div class="right" >
+                    
+                            <a routerLink="/productdetail/{{x.productId}}"><div class="pname">{{x.productName}}</div></a>
+                            <br>
+                    
+                           
+                    
+                            
+                            <div class="price">&#x20b9; {{x.price}} </div>
+
+                            <br>
+                    
+                            <div class="description">
+                                <p>{{ x.description | slice:0:150 }}...</p>
+                            </div>
+
+                            <div *ngFor="let x of DateArray">
+                                <span class="string"><b>Approval for : </b> 
+                                    <small> <span class="fs-6" id="date"><b>{{ x.startDate | date: 'dd-MM-yyyy' }} to </b></span></small>
+                                   <small> <span class="fs-6" id="date"><b>{{ x.endDate | date: 'dd-MM-yyyy' }}</b></span></small>
+                                </span>
+                                </div>
+                    
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+                <div class="btn-box1">
+                    <button class="cart-btn-place" (click)="onOrder(true)" *ngIf="ProductArray.length!==0">Approve</button>
+                    <hr>
+                    <button class="cart-btn-place1" (click)="onOrder(false)" *ngIf="ProductArray.length!==0">Decline</button>
+                </div>
+               
+            </div>
+            </div>
+        
+    </div>
+  </div>
